@@ -1,0 +1,21 @@
+{
+  "name": "shop-koa",
+  "version": "1.0.0",
+  "description": "小程序商城后台服务",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "koa": "^2.13.4"
+  },
+  "dependencies": {
+    "koa-bodyparser": "^4.3.0",
+    "koa-router": "^12.0.0",
+    "koa-static": "^5.0.0",
+    "koa2-cors": "^2.0.6",
+    "mysql": "^2.18.1"
+  }
+}
