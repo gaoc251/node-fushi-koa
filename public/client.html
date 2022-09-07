@@ -65,6 +65,13 @@
     结果：
     <textarea id="selectData" style="height:150px;width:300px;"></textarea>
 
+    <br>
+    <br>
+    <button onclick="weappLogin()">调试微信登录</button>
+    <br>
+    结果：
+    <textarea id="weappLoginData" style="height:150px;width:300px;"></textarea>
+
     <script>   
         // 此处存放处理事件的代码
         function getSubmit() {
@@ -126,6 +133,25 @@
                 }                
             });
         }
+
+        // 微信登录
+        function weappLogin(){
+            $.ajax(
+            {
+                type: "post",
+                url: "http://127.0.0.1:8080/wxLogin",
+                dataType: "json",
+                success: function(data)
+                {
+                    document.getElementById("weappLoginData").innerHTML = JSON.stringify(data);
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown)
+                {  
+                    console.log(textStatus);  
+                }                
+            });
+        }
+
     </script>
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
     </script>

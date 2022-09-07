@@ -9,6 +9,7 @@ const App = new Koa();
 
 require('./routes/test')
 require('./routes/database') // 测试数据库
+require('./routes/user') // 微信登录
 
 // 创建连接
 const connection = mysql.createConnection
