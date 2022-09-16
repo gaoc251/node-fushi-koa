@@ -4,12 +4,16 @@ const router = require('./routes/main')
 const cors = require('koa2-cors'); // 处理跨域
 const bodyParser = require('koa-bodyparser'); // 处理POST请求，请求报文的处理。
 const mysql = require('mysql'); // 引入数据库
-
+const serve = require("koa-static");
+const koaBody = require('koa-body')
+const path = require('path')
 const App = new Koa();
 
 require('./routes/test')
 require('./routes/database') // 测试数据库
 require('./routes/user') // 微信登录
+require('./routes/upload') // 图片上传
+require('./routes/uploads')
 
 // 创建连接
 const connection = mysql.createConnection
@@ -41,5 +45,14 @@ App.use(cors()); // 跨域出路
 App.use(bodyParser());	// POST
 // 开始使用路由
 App.use(router.routes())
+// App.use(serve(__dirname))  // 设置静态文件
+App.use(serve(path.join(__dirname, '/public')))  // 设置静态文件
+
+App.use(koaBody({
+    multipart: true,
+    formidable: {
+        maxFieldsSize: 2*1024*1024
+    }
+}))
 
 App.listen(8080)
