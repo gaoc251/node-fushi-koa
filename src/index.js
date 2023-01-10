@@ -12,16 +12,15 @@ const App = new Koa();
 require('./routes/test')
 require('./routes/database') // 测试数据库
 require('./routes/user') // 微信登录
-require('./routes/upload') // 图片上传
-require('./routes/uploads')
+require('./routes/uploads')// 图片上传
 
 // 创建连接
 const connection = mysql.createConnection
 ({
   host     : 'localhost',
   user     : 'root',
-  password : '123456', // 你的MySQL数据库root密码
-  database : 'user'	// 要连接的数据库名
+  password : '12345678', // 你的MySQL数据库root密码
+  database : 'shopping-mall'	// 要连接的数据库名
 });
 
 connection.connect(); // 打开连接
