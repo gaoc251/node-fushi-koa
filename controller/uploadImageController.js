@@ -6,6 +6,7 @@ const saveImage = async (imageData) => {
         '${imageData.files}'
     )`
     const insertData = await exec(sql)
+    console.log("insertData.insertId", insertData.insertId)
     return {
         id: insertData.insertId
     }

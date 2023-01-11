@@ -1,8 +1,4 @@
-const router = require('./main')
 const multer = require('@koa/multer');
-const fs = require('fs');
-const path = require('path');
-
 
 //配置    
 var storage = multer.diskStorage({
@@ -20,18 +16,5 @@ var storage = multer.diskStorage({
 // //加载配置
 var upload = multer({ storage: storage })
 
-// router.post('/upload/img', upload.single('file'), async (ctx, next) => {
-//     console.log("ctx.req.body", ctx.request.body) 
-    
-//     ctx.body = {
-//         filename: ctx.request.body.files, 
-//         body: ctx.req.body,
-//         code: 0,
-//         data: {
-//             fileUrl: ctx.request.body.files //返回文件名  
-//         },
-//         message: 'success'
-//     }
-// });
 module.exports = {upload}
 
