@@ -40,6 +40,9 @@ router.post('/upload/img', upload.single('file'), async (ctx, next) => {
 //     ctx.body = file
 // })
 
+const HomeController = require('../src/controller/homeController')
+router.get('/iconConfig', HomeController.getIconConfig)
+
 App.use(cors()); // 跨域出路
 App.use(bodyParser());	// POST
 // 开始使用路由
