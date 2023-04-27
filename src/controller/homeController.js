@@ -16,6 +16,38 @@ class HomeController {
             }
         }
     }
+
+    static async getRecommendList (ctx) {
+        let recommendList = await HomeService.getRecommendList()
+        if (recommendList) {
+            ctx.body = {
+                code: 0,
+                msg: 'success',
+                data: recommendList
+            }
+        } else {
+            ctx.body = {
+                code: 1001,
+                msg: '请求错误'
+            }
+        }
+    } 
+
+    static async getPintuanList (ctx) {
+        let pintuanList = await HomeService.getPintuanList ()
+        if (pintuanList) {
+            ctx.body = {
+                code: 0,
+                msg: 'success',
+                data: pintuanList
+            }
+        } else {
+            ctx.body = {
+                code: 1001,
+                msg: '请求错误'
+            }
+        }
+    }
 }
 
 module.exports = HomeController

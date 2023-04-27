@@ -40,8 +40,19 @@ router.post('/upload/img', upload.single('file'), async (ctx, next) => {
 //     ctx.body = file
 // })
 
-const HomeController = require('../src/controller/homeController')
-router.get('/iconConfig', HomeController.getIconConfig)
+// 首页接口
+// const HomeController = require('../src/controller/homeController')
+// router.get('/iconConfig', HomeController.getIconConfig)
+// router.get('/getRecommedList', HomeController.getRecommendList)
+// router.get('/getPintuanList', HomeController.getPintuanList)
+
+// 个人接口
+
+// 上传接口
+const CommonController = require('./controller/commonController ')
+router.post('/uploadImg', upload.single('file'), CommonController.uploadImg)
+
+
 
 App.use(cors()); // 跨域出路
 App.use(bodyParser());	// POST

@@ -6,6 +6,17 @@ class HomeModels {
         const iconConfig = await query(connection, sql, '')
         return iconConfig
     }
+
+    static async queryRecommendList (connection) {
+        const sql =  `SELECT * from goods`
+        const recommendList = await query(connection, sql, '')
+        return recommendList
+    }
+    static async queryPintuanList (connection) {
+        const sql =  `SELECT * from goods where isPintuan = 1`
+        const recommendList = await query(connection, sql, '')
+        return recommendList
+    }
 }
 
 module.exports = HomeModels
