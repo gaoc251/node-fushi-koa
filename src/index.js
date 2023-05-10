@@ -50,9 +50,13 @@ router.post('/upload/img', upload.single('file'), async (ctx, next) => {
 
 // 上传接口
 const CommonController = require('./controller/commonController ')
-router.post('/uploadImg', upload.single('file'), CommonController.uploadImg)
+router.post('/uploadImg', upload.single('file'), CommonController.uploadImg) // 暂时未用
+router.post('/saveFushiRecord', CommonController.saveFushiRecord)
 
-
+// 查询辅食列表数据
+const FushiController = require('./controller/fushiController')
+router.get('/getFushiRecord', FushiController.getFushiRecord)
+router.get('/getFushiDetail', FushiController.getFushiDetail)
 
 App.use(cors()); // 跨域出路
 App.use(bodyParser());	// POST
@@ -60,12 +64,13 @@ App.use(bodyParser());	// POST
 App.use(router.routes())
 // App.use(serve(__dirname))  // 设置静态文件
 App.use(serve(path.join(__dirname, '/public')))  // 设置静态文件
-
-App.use(koaBody({
-    multipart: true,
-    formidable: {
-        maxFieldsSize: 2*1024*1024
-    }
-}))
+App.use(router.allowedMethods())
+// App.use(koaBody({
+//     // enableTypes: ['json', 'form', 'text'],
+//     multipart: true,
+//     formidable: {
+//         maxFieldsSize: 2*1024*1024
+//     }
+// }))
 
 App.listen(8080)

@@ -7,6 +7,14 @@ class CommonModels {
         // const iconConfig = await insert(connection, sql, '')
         // return iconConfig
     }
+
+    static async addFushiRecord (connection, params) {
+        let {recordTitle,ingredients,seasoning,cate,month,hard,tip,steps,imgList,cooking,effect,description,time} = params
+        const sql =  
+        `INSERT INTO fushi (recordTitle,ingredients,seasoning,cate,month,hard,tip,steps,imgList,cooking,effect,description,time) VALUES ('${recordTitle}','${ingredients}','${seasoning}','${cate}','${month}','${hard}','${tip}','${steps}','${imgList}','${cooking}','${effect}','${description}','${time}');`
+        const record = await query(connection, sql, params)
+        return record
+    }
 }
 
 module.exports = CommonModels
