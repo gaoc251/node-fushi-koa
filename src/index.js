@@ -51,12 +51,18 @@ router.post('/upload/img', upload.single('file'), async (ctx, next) => {
 // 上传接口
 const CommonController = require('./controller/commonController ')
 router.post('/uploadImg', upload.single('file'), CommonController.uploadImg) // 暂时未用
+router.get('/getOpenId', CommonController.getOpenId)
 router.post('/saveFushiRecord', CommonController.saveFushiRecord)
 
 // 查询辅食列表数据
 const FushiController = require('./controller/fushiController')
 router.get('/getFushiRecord', FushiController.getFushiRecord)
 router.get('/getFushiDetail', FushiController.getFushiDetail)
+router.get('/updateFushiCollect', FushiController.updateFushiCollect)
+
+
+
+
 
 App.use(cors()); // 跨域出路
 App.use(bodyParser());	// POST

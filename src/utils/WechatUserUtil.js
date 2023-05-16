@@ -9,8 +9,8 @@ const HttpUtil = require('../utils/HttpUtil')
 class WechatUserUtil {
     constructor() {
         this.reqUrl = 'https://api.weixin.qq.com/sns/jscode2session'
-        this.appid = 'wx3ad3b69d691903b8'
-        this.secret = '7a799c9b02420c2d0aaeeaa47f4d8331'
+        this.appid = 'wx35bea068bd43243b'
+        this.secret = '361d38749fbe7f8d98b7d507229d8d93'
         this.grand_type = 'authorization_code'
         this.openId = null
         this.sessionKey = null
@@ -43,6 +43,10 @@ class WechatUserUtil {
 
     // 解密获取用户信息
     getUserInfo(encryptedData, ivv, sessionKey) {
+        console.log("encryptedData", encryptedData)
+        console.log("ivv", ivv)
+        console.log("sessionKey", sessionKey)
+
         if (!sessionKey) {
             sessionKey = this.sessionKey
         }
@@ -53,6 +57,7 @@ class WechatUserUtil {
             mode: CryptoJs.mode.CBC,
             padding: CryptoJs.pad.Pkcs7
         })
+        
         return JSON.parse(Base64.decode(CryptoJs.enc.Base64.stringify(decrypt)))
     }
 }
