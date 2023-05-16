@@ -56,6 +56,39 @@ class FushiController {
         }
     }
 
+    static async getRecommendList (ctx) {
+        let params = url.parse(ctx.url, true).query
+        let list = await FushiService.getRecommendList(params)
+        if (list) {
+            ctx.body = {
+                code: 0,
+                msg: 'success',
+                data: list
+            }
+        } else {
+            ctx.body = {
+                code: 1001,
+                msg: '请求错误'
+            }
+        }
+    }
+    // 
+    static async getFavList (ctx) {
+        let params = url.parse(ctx.url, true).query
+        let list = await FushiService.getFavList(params)
+        if (list) {
+            ctx.body = {
+                code: 0,
+                msg: 'success',
+                data: list
+            }
+        } else {
+            ctx.body = {
+                code: 1001,
+                msg: '请求错误'
+            }
+        }
+    }
 }
 
 module.exports = FushiController

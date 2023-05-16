@@ -17,7 +17,14 @@ class FushiService {
     static async updateFushiCollect (params) {
         return await execute(FushiModels.updateCollectState, params)
     }
-    
+
+    static async getRecommendList (params) {
+        return await execute(FushiModels.queryRecommendList, params)
+    }
+    // 
+    static async getFavList (params) {
+        return await execute(FushiModels.queryFavList, params)
+    }
 }
 
 module.exports = FushiService

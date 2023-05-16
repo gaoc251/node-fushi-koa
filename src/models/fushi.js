@@ -12,7 +12,8 @@ class FushiModels {
         const sql =  `SELECT * from fushi where id='${params.id}';`
         console.log("sql", sql)
         const data = await query(connection, sql, '')
-        return data
+        const updateViewNum = await query(connection, `UPDATE fushi SET viewNum = viewNum + 1 WHERE id=${params.id}`, '')
+        return updateViewNum && data
     }
 
     static async queryCollectState (connection, params) {
@@ -32,15 +33,32 @@ class FushiModels {
             const sql2 =  
             `INSERT INTO user_collect (openId,recordId) VALUES ('${params.openId}','${params.id}');`
             const state = await query(connection, sql2, params)
-            return state && {state: true}
+            const state1 = await query(connection, `UPDATE fushi SET favoriteNum = favoriteNum + 1 WHERE id=${params.id}`, {})
+            return state && state1 && {state: true}
         } else {
             const sql3 =  
             `DELETE FROM user_collect where recordId='${params.id}' and openId='${params.openId}';`
             const state = await query(connection, sql3, params)
-            return state && {state: false}
+            const state1 = await query(connection, `UPDATE fushi SET favoriteNum = favoriteNum - 1 WHERE id=${params.id}`, {})
+            return state && state1 && {state: false}
         }
     }
-    
+
+    static async queryRecommendList (connection, params) {
+        const sql =  `SELECT * from fushi ORDER BY viewNum DESC LIMIT 5;`
+        console.log("sql", sql)
+        const list = await query(connection, sql, '')
+        return list
+    }
+    // 
+    static async queryFavList (connection, params) {
+        // const sql =  `SELECT * from user_collect where openId='${params.openId}'`
+        const sql =  `SELECT * from fushi where id= (SELECT recordId from user_collect where openId='${params.openId}')`
+        console.log("sql", sql)
+        const list = await query(connection, sql, '')
+        
+        return list
+    }
 }
 
 module.exports = FushiModels

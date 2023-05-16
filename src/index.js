@@ -59,8 +59,8 @@ const FushiController = require('./controller/fushiController')
 router.get('/getFushiRecord', FushiController.getFushiRecord)
 router.get('/getFushiDetail', FushiController.getFushiDetail)
 router.get('/updateFushiCollect', FushiController.updateFushiCollect)
-
-
+router.get('/getRecommendList', FushiController.getRecommendList)
+router.get('/getFavList', FushiController.getFavList)
 
 
 

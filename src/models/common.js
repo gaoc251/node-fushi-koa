@@ -11,7 +11,7 @@ class CommonModels {
     static async addFushiRecord (connection, params) {
         let {recordTitle,ingredients,seasoning,cate,month,hard,tip,steps,imgList,cooking,effect,description,time} = params
         const sql =  
-        `INSERT INTO fushi (recordTitle,ingredients,seasoning,cate,month,hard,tip,steps,imgList,cooking,effect,description,time,favoriteNum) VALUES ('${recordTitle}','${ingredients}','${seasoning}','${cate}','${month}','${hard}','${tip}','${steps}','${imgList}','${cooking}','${effect}','${description}','${time}',0);`
+        `INSERT INTO fushi (recordTitle,ingredients,seasoning,cate,month,hard,tip,steps,imgList,cooking,effect,description,time,favoriteNum, viewNum) VALUES ('${recordTitle}','${ingredients}','${seasoning}','${cate}','${month}','${hard}','${tip}','${steps}','${imgList}','${cooking}','${effect}','${description}','${time}',0,0);`
         const record = await query(connection, sql, params)
         return record
     }
