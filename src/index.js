@@ -61,7 +61,7 @@ router.get('/getFushiDetail', FushiController.getFushiDetail)
 router.get('/updateFushiCollect', FushiController.updateFushiCollect)
 router.get('/getRecommendList', FushiController.getRecommendList)
 router.get('/getFavList', FushiController.getFavList)
-
+router.get('/getSearch', FushiController.getSearch)
 
 
 App.use(cors()); // 跨域出路

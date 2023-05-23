@@ -66,6 +66,14 @@ class FushiModels {
         }
         return favList
     }
+
+    // 
+    static async querySearchList (connection, params) {
+        const sql =  `SELECT * from fushi WHERE CONCAT (recordTitle,ingredients) LIKE '%${params.keyword}%';`
+        console.log("sql", sql)
+        const list = await query(connection, sql, '')
+        return list
+    }
 }
 
 module.exports = FushiModels

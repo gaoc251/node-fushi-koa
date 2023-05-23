@@ -72,7 +72,7 @@ class FushiController {
             }
         }
     }
-    // 
+    // 获取收藏列表
     static async getFavList (ctx) {
         let params = url.parse(ctx.url, true).query
         let list = await FushiService.getFavList(params)
@@ -89,6 +89,29 @@ class FushiController {
             }
         }
     }
+
+    // 模糊搜索 
+    static async getSearch (ctx) {
+        let params = url.parse(ctx.url, true).query
+        let list = await FushiService.getSearch(params)
+        if (list) {
+            ctx.body = {
+                code: 0,
+                msg: 'success',
+                data: list
+            }
+        } else {
+            ctx.body = {
+                code: 1001,
+                msg: '请求错误'
+            }
+        }
+    }
+
+
+
+
+
 }
 
 module.exports = FushiController

@@ -25,6 +25,11 @@ class FushiService {
     static async getFavList (params) {
         return await execute(FushiModels.queryFavList, params)
     }
+
+    // 
+    static async getSearch (params) {
+        return await execute(FushiModels.querySearchList, params)
+    }
 }
 
 module.exports = FushiService
