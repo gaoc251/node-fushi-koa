@@ -53,11 +53,18 @@ class FushiModels {
     // 
     static async queryFavList (connection, params) {
         // const sql =  `SELECT * from user_collect where openId='${params.openId}'`
-        const sql =  `SELECT * from fushi where id= (SELECT recordId from user_collect where openId='${params.openId}')`
-        console.log("sql", sql)
-        const list = await query(connection, sql, '')
-        
-        return list
+        let sql1 = `SELECT recordId from user_collect where openId='${params.openId}'`
+        const list1 = await query(connection, sql1, '')
+
+        let favList = []
+        for (let index = 0; index < list1.length; index++) {
+            const element = list1[index];
+            const sql2 =  `SELECT * from fushi where id=${element.recordId};`
+            console.log("sql2", sql2)
+            const item = await query(connection, sql2, '')
+            favList.push(item[0])
+        }
+        return favList
     }
 }
 
