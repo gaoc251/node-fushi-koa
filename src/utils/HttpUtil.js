@@ -2,16 +2,16 @@ const https = require('https')
 const http = require('http')
 require('request-to-curl')
 
-const baseDomain =  '127.0.0.1:8080'//"http://appwechat.service.58dns.org";
+// const baseDomain =  '127.0.0.1:8080'//"http://appwechat.service.58dns.org";
 
-const URLS = {
-    "houseList": `${baseDomain}/houselist/api_zufang_m_list`,//列表数据
-    "filterData": `${baseDomain}/houselist/api_zufang_m_filter`,//非列表数据
-}
+// const URLS = {
+//     "houseList": `${baseDomain}/houselist/api_zufang_m_list`,//列表数据
+//     "filterData": `${baseDomain}/houselist/api_zufang_m_filter`,//非列表数据
+// }
 
 class HttpUtil {
 
-    static URLS = URLS
+    // static URLS = URLS
 
     static async post(urlStr, body={}) {
         return new Promise((resolve, reject) => {
